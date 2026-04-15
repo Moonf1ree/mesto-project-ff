@@ -7,16 +7,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000;
+  background: #000000;
   border-radius: 2px;
   border: none;
-  transition: visibility 0s, background 0.3s;
+  transition:
+    visibility 0s,
+    background 0.3s,
+    opacity 0.3s;
   margin-top: 48px;
 }
 
 .popup__button:hover {
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;
+}
+
+.popup__button:active {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.popup__button_disabled {
+  opacity: 0.2;
+  background: #000000;
+  color: #ffffff;
+  cursor: default;
+  pointer-events: none;
+}
+
+.popup__button_disabled:hover {
+  opacity: 0.2;
+  background: #000000;
 }
 
 @media screen and (max-width: 568px) {
