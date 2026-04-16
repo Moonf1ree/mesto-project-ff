@@ -7,14 +7,15 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
+    <script type="module" crossorigin src="/mesto-project-ff/assets/index-BzKkCTFi.js"></script>
+    <link rel="stylesheet" crossorigin href="/mesto-project-ff/assets/index-BKDLBYVC.css">
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/logo.svg"
+          src="/mesto-project-ff/assets/logo-DQ1BIEMY.svg"
           alt="Логотип проекта масто"
           class="logo header__logo"
         />
@@ -54,10 +55,6 @@
               name="name"
               class="popup__input popup__input_type_name"
               placeholder="Имя"
-              minlength="2"
-              maxlength="40"
-              required
-              data-pattern-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
             />
             <span class="popup__error" id="name-error"></span>
             <input
@@ -66,10 +63,6 @@
               name="description"
               class="popup__input popup__input_type_description"
               placeholder="О себе"
-              minlength="2"
-              maxlength="200"
-              required
-              data-pattern-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
             />
             <span class="popup__error" id="description-error"></span>
             <button type="submit" class="button popup__button">Сохранить</button>
@@ -87,8 +80,6 @@
               name="place-name"
               class="popup__input popup__input_type_card-name"
               placeholder="Название"
-              required
-              data-pattern-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
             />
             <span class="popup__error" id="place-name-error"></span>
             <input
@@ -97,7 +88,6 @@
               name="link"
               class="popup__input popup__input_type_url"
               placeholder="Ссылка на картинку"
-              required
             />
             <span class="popup__error" id="link-error"></span>
             <button type="submit" class="button popup__button">Создать</button>
@@ -115,7 +105,6 @@
               name="avatar-url"
               class="popup__input popup__input_type_url"
               placeholder="Ссылка на изображение"
-              required
             />
             <span class="popup__error" id="avatar-url-error"></span>
             <button type="submit" class="button popup__button">Сохранить</button>
@@ -157,7 +146,6 @@
           </div>
         </div>
       </li>
-    </template>
-    <script type="module" src="./scripts/index.js"></script>
+    </template>
   </body>
 </html>
