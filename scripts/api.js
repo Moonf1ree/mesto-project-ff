@@ -12,12 +12,17 @@ const authHeaders = () => ({
 
 const jsonHeaders = () => config.headers;
 
-function checkResponse(res) {
-  if (res.ok) {
+export function checkResponse(res) {
+  if (!res.ok) {
+    return Promise.reject(new Error(`Ошибка: ${res.status}`));
+  }
+
+  const contentType = res.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
     return res.json();
   }
 
-  return Promise.reject(new Error(`Ошибка: ${res.status}`));
+  return Promise.resolve();
 }
 
 export const getUserInfo = () => {
@@ -52,13 +57,7 @@ export const deleteCard = (cardId) => {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: "DELETE",
     headers: authHeaders(),
-  }).then((res) => {
-    if (res.ok) {
-      return Promise.resolve();
-    }
-
-    return Promise.reject(new Error(`Ошибка: ${res.status}`));
-  });
+  }).then(checkResponse);
 };
 
 export const changeLikeCardStatus = (cardId, isLiked) => {

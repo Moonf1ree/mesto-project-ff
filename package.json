@@ -2,10 +2,12 @@
   "name": "mesto-project-ff",
   "version": "1.0.0",
   "description": "mesto project",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d ."
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -16,8 +18,9 @@
   "bugs": {
     "url": "https://github.com/Moonf1ree/mesto-project-ff/issues"
   },
-  "homepage": "https://github.com/Moonf1ree/mesto-project-ff#readme",
+  "homepage": "https://moonf1ree.github.io/mesto-project-ff/",
   "devDependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "vite": "^6.3.5"
   }
 }

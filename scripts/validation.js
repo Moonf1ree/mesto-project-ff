@@ -1,11 +1,12 @@
 import {
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+  MIN_DESCRIPTION_LENGTH,
+  MAX_DESCRIPTION_LENGTH,
   MIN_CARD_NAME_LENGTH,
   MAX_CARD_NAME_LENGTH,
+  NAME_LIKE_PATTERN_MESSAGE,
 } from "./constants.js";
-
-const MSG_SKIP_FIELD = "Вы пропустили это поле";
-const MSG_URL = "Введите адрес сайта";
-const MSG_CARD_NAME_LENGTH = "Поле заполнено некорректно";
 
 const patternInputClasses = [
   "popup__input_type_name",
@@ -14,6 +15,35 @@ const patternInputClasses = [
 ];
 
 const nameLikePattern = /^[a-zA-Zа-яА-ЯёЁ\s\-]+$/;
+
+function applyInputConstraints(inputElement) {
+  const id = inputElement.id;
+
+  if (id === "name") {
+    inputElement.required = true;
+    inputElement.minLength = MIN_NAME_LENGTH;
+    inputElement.maxLength = MAX_NAME_LENGTH;
+    return;
+  }
+
+  if (id === "description") {
+    inputElement.required = true;
+    inputElement.minLength = MIN_DESCRIPTION_LENGTH;
+    inputElement.maxLength = MAX_DESCRIPTION_LENGTH;
+    return;
+  }
+
+  if (id === "place-name") {
+    inputElement.required = true;
+    inputElement.minLength = MIN_CARD_NAME_LENGTH;
+    inputElement.maxLength = MAX_CARD_NAME_LENGTH;
+    return;
+  }
+
+  if (id === "link" || id === "avatar-url") {
+    inputElement.required = true;
+  }
+}
 
 function isPatternInput(inputElement) {
   return patternInputClasses.some((cls) =>
@@ -26,33 +56,12 @@ function validateInputField(inputElement) {
   const value = inputElement.value;
 
   if (inputElement.required && value.trim() === "") {
-    inputElement.setCustomValidity(MSG_SKIP_FIELD);
     return;
   }
 
   if (isPatternInput(inputElement) && value.length > 0) {
     if (!nameLikePattern.test(value)) {
-      inputElement.setCustomValidity(
-        inputElement.dataset.patternMessage || "",
-      );
-      return;
-    }
-  }
-
-  if (inputElement.classList.contains("popup__input_type_card-name")) {
-    const len = value.length;
-    if (
-      len > 0 &&
-      (len < MIN_CARD_NAME_LENGTH || len > MAX_CARD_NAME_LENGTH)
-    ) {
-      inputElement.setCustomValidity(MSG_CARD_NAME_LENGTH);
-      return;
-    }
-  }
-
-  if (inputElement.type === "url" && value.length > 0) {
-    if (inputElement.validity.typeMismatch) {
-      inputElement.setCustomValidity(MSG_URL);
+      inputElement.setCustomValidity(NAME_LIKE_PATTERN_MESSAGE);
     }
   }
 }
@@ -112,6 +121,7 @@ function setEventListeners(formElement, settings) {
   );
 
   inputList.forEach((inputElement) => {
+    applyInputConstraints(inputElement);
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, settings);
       toggleButtonState(formElement, settings);

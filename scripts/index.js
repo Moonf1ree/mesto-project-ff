@@ -7,12 +7,14 @@ import {
   updateAvatar,
 } from "./api.js";
 import { createCard } from "./card.js";
-import {
+import { createModalController } from "./modal.js";
+
+const {
   closeModal,
   initModalOverlayClose,
   openModal,
   setModalBeforeCloseHook,
-} from "./modal.js";
+} = createModalController();
 import { enableValidation, clearValidation } from "./validation.js";
 
 const cardTemplate = document.querySelector("#card-template").content;
