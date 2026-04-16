@@ -1,5 +1,3 @@
-/** Правила валидации задаются в коде, не через HTML5-атрибуты в разметке */
-
 export const MIN_NAME_LENGTH = 2;
 export const MAX_NAME_LENGTH = 40;
 

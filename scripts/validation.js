@@ -99,9 +99,7 @@ function checkInputValidity(formElement, inputElement, settings) {
 }
 
 function toggleButtonState(formElement, settings) {
-  const submitButton = formElement.querySelector(
-    settings.submitButtonSelector,
-  );
+  const submitButton = formElement.querySelector(settings.submitButtonSelector);
   const inputList = Array.from(
     formElement.querySelectorAll(settings.inputSelector),
   );
